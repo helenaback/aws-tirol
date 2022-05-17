@@ -34,7 +34,7 @@ let layerControl = L.control.layers({
     "Relief avalanche.report": startLayer,
     "Esri World Imagery": L.tileLayer.provider("Esri.WorldImagery"),
 }, {
-    "Wetterstationen": overlays.stations,
+    //"Wetterstationen": overlays.stations,
     "Temperatur": overlays.temperature,
     "Niederschlag": overlays.precipitation,
     "Schneehöhe": overlays.snowheight,
@@ -59,6 +59,32 @@ overlays.stations.addTo(map);
 async function loadData(url) {
     let response = await fetch(url);
     let geojson = await response.json();
+
+    let overlay = L.featureGroup();
+    layerControl.addOverlay(overlay, "Wetterstationen");
+    overlay.addTo(map);
+
+    L.geoJSON(geojson, {
+        pointToLayer: function (geoJsonPoint, latlng) {
+            //console.log(geoJsonPoint.properties.NAME);
+            let popup = `
+            <strong>${geoJsonPoint.properties.name}</strong><br>
+            
+            `;
+
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: `icons/wifi.png`,
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
+                })
+
+            }).bindPopup(popup);
+        }
+
+    }).addTo(overlay);
+
+    
 
     // Wetterstationen mit Icons und Popups implementieren
 }
