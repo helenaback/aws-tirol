@@ -34,7 +34,7 @@ let layerControl = L.control.layers({
     "Relief avalanche.report": startLayer,
     "Esri World Imagery": L.tileLayer.provider("Esri.WorldImagery"),
 }, {
-    //"Wetterstationen": overlays.stations,
+    "Wetterstationen": overlays.stations,
     "Temperatur": overlays.temperature,
     "Niederschlag": overlays.precipitation,
     "Schneehöhe": overlays.snowheight,
@@ -60,15 +60,11 @@ async function loadData(url) {
     let response = await fetch(url);
     let geojson = await response.json();
 
-    let overlay = L.featureGroup();
-    layerControl.addOverlay(overlay, "Wetterstationen");
-    overlay.addTo(map);
-
     L.geoJSON(geojson, {
         pointToLayer: function (geoJsonPoint, latlng) {
             //console.log(geoJsonPoint.properties.NAME);
             let popup = `
-            <strong>${geoJsonPoint.properties.name}</strong><br>
+            <strong>${geoJsonPoint.properties.name}</strong><br> (${geoJsonPoint.geometry.coordinates[2]} m ü. NN)
             
             `;
 
@@ -82,7 +78,7 @@ async function loadData(url) {
             }).bindPopup(popup);
         }
 
-    }).addTo(overlay);
+    }).addTo(overlays.stations);
 
     
 
