@@ -65,13 +65,14 @@ let drawStations = function (geojson) {
             <strong>${geoJsonPoint.properties.name}</strong><br> (${geoJsonPoint.geometry.coordinates[2]} m ü. NN)
         
              `;
-
-            return L.marker(latlng, {
+             return L.marker(latlng, {
                 icon: L.icon({
                     iconUrl: `icons/wifi.png`,
                     iconAnchor: [16, 37],
                     popupAnchor: [0, -37]
                 })
+            
+
 
             }).bindPopup(popup);
         }
@@ -91,11 +92,10 @@ let drawTemperature = function (geojson) {
         
              `;
 
-            return L.marker(latlng, {
-                icon: L.icon({
-                    iconUrl: `icons/wifi.png`,
-                    iconAnchor: [16, 37],
-                    popupAnchor: [0, -37]
+             return L.marker(latlng, {
+                icon: L.divIcon({
+                    className: "aws-div-icon",
+                    html: `<span>${geoJsonPoint.properties.LT}</span>`
                 })
 
             }).bindPopup(popup);
