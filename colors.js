@@ -1,57 +1,57 @@
 const COLORS = {
    temperature:  [
        {
-           min: -50, 
-           max: -25,
-           color: "#9f80ff" 
-       }, {
-        min: -25, 
-        max: -20,
-        color: "#784cff"
-       },{
         min: -50, 
         max: -25,
-        color: "#0f5abe"
+        color: "#9f80ff"
+       },{
+        min: -25, 
+        max: -20,
+        color: "##784cff"
        },{
         min: -20, 
         max: -15,
-        color: "#1380ff"
+        color: "#0f5abe"
        },{
         min: -15, 
         max: -10,
-        color: "#19cdff"
+        color: "#1380ff"
        },{
         min: -10, 
         max: -5,
-        color: "#8fffff"
+        color: "#19cdff"
        },{
         min: -5, 
         max: 0,
-        color: "#b0ffbc"
+        color: "#8fffff"
        },{
         min: 0, 
         max: 5,
-        color: "#ffff73"
+        color: "b0ffbc"
        },{
         min: 5, 
         max: 10,
-        color: "#ffbe7d"
+        color: "#ffff73"
        },{
         min: 10, 
         max: 15,
-        color: "#ff9b41"
+        color: "#ffbe7d"
        },{
         min: 15, 
         max: 20,
-        color: "#ff5a41"
+        color: "#ff9b41"
        },{
         min: 20, 
         max: 25,
-        color: "#ff1e23"
+        color: "#ff5a41"
        },{
         min: 25, 
-        max: 50,
-        color: "#784cff"
+        max: 30,
+        color: "#ff1e23"
+       },{
+        min: 30, 
+        max: 25,
+        color: "#fa3c96"
        }
 
     ]
