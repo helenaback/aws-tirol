@@ -140,7 +140,7 @@ let drawSnowheight = function (geojson) {
         pointToLayer: function (geoJsonPoint, latlng) {
             //console.log(geoJsonPoint.properties.name);
             let popup = `
-            <strong>${geoJsonPoint.properties.name}</strong><br> (${geoJsonPoint.geometry.coordinates[2]} cm)
+            <strong>${geoJsonPoint.properties.name}</strong><br> (${geoJsonPoint.geometry.coordinates[2]})
         
              `;
 
@@ -152,7 +152,7 @@ let drawSnowheight = function (geojson) {
             return L.marker(latlng, {
                 icon: L.divIcon({
                     className: "aws-div-icon",
-                    html: `<span style="background-color:${color}">${geoJsonPoint.properties.HS.toFixed(1)}</span>`
+                    html: `<span style="background-color:${color}">${geoJsonPoint.properties.HS.toFixed(1)}cm</span>`
                 })
 
             }).bindPopup(popup);
