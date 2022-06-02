@@ -74,22 +74,21 @@ let drawStations = function (geojson) {
             //console.log(geoJsonPoint.properties.name);
             let popup = `
             <strong>${geoJsonPoint.properties.name}</strong><br> (${geoJsonPoint.geometry.coordinates[2]} m ü. NN)
+        
              `;
-             return L.marker(latlng, {
+
+            return L.marker(latlng, {
                 icon: L.icon({
                     iconUrl: `icons/wifi.png`,
                     iconAnchor: [16, 37],
                     popupAnchor: [0, -37]
                 })
-            
-
 
             }).bindPopup(popup);
         }
 
     }).addTo(overlays.stations);
 }
-
 
 //Temperaturen einladen 
 let drawTemperature = function (geojson) {
