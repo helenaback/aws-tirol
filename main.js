@@ -196,6 +196,43 @@ let drawWind = function (geojson) {
 
     }).addTo(overlays.wind);
 }
+
+//Luftfeuchtigkeit
+let drawHUmidity = function (geojson) {
+
+    L.geoJSON(geojson, {
+        filter: function(geoJsonPoint){
+            if (geoJsonPoint.properties.HS > 0 && geoJsonPoint.properties.LT <101){
+                return true;
+            }
+
+        },
+
+        pointToLayer: function (geoJsonPoint, latlng) {
+            //console.log(geoJsonPoint.properties.name);
+            let popup = `
+            <strong>${geoJsonPoint.properties.name}</strong><br> (${geoJsonPoint.geometry.coordinates[2]} m ü. NN)
+        
+             `;
+
+            let color = getColor(
+                geoJsonPoint.properties.HS, 
+                COLORS.snow_height
+            );
+            // L.marker(latlng).addTo(map);
+             return L.marker(latlng, {
+                icon: L.divIcon({
+                    className: "aws-div-icon",
+                    html: `<span style="background-color:${color}">${geoJsonPoint.properties.HS.toFixed(1)}</span>`
+                })
+
+            }).bindPopup(popup);
+        }
+
+    
+    }).addTo(overlays.snowheight);
+}
+
     
 
 // Wetterstationen
